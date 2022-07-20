@@ -4,7 +4,7 @@ import clockIcon from "../images/clock.svg"
 
 import "../styles/Feed.css"
 
-export default function Feed({posts}) {
+export default function Feed({ posts, title, subtitle }) {
   return (
     <>
       {posts.length === 0 ? (
@@ -16,18 +16,18 @@ export default function Feed({posts}) {
           </h1>
 
           <h2>
-            It looks like your friends have not posted anything yet... Start writting a new Story!
+            It looks like you and your friends have not posted anything yet... Start writting a new Story!
           </h2>
         </div>
       ) : (
         <>
           <header>
             <h1>
-              Your feed
+              {title}
             </h1>
 
             <h2>
-              Track what your friends are thinking in real time
+              {subtitle}
             </h2>
           </header>
 
