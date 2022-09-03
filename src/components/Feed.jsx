@@ -1,24 +1,35 @@
 import emptyFolderIcon from "../images/empty-folder.svg"
 import userIcon from "../images/user.svg"
 import clockIcon from "../images/clock.svg"
+import loader from '../images/loader-primary.svg'
+import cloudErrorIcon from "../images/cloud-error.svg"
 
 import "../styles/Feed.css"
+import FeedStatus from "./FeedStatus"
 
-export default function Feed({ posts, title, subtitle }) {
+export default function Feed({ isLoading, hasError, posts, title, subtitle }) {
+
+  if (isLoading) {
+    return <img src={loader} alt='loading' className="spin" />
+  }
+
+  if (hasError) {
+    return (
+      <FeedStatus 
+        image={cloudErrorIcon}
+        title="Something went wrong"
+      />
+    )
+  }
+
   return (
     <>
       {posts.length === 0 ? (
-        <div className="feed-status">
-          <img src={emptyFolderIcon} alt="Empty folder" />
-
-          <h1>
-            Nothing to show
-          </h1>
-
-          <h2>
-            It looks like you and your friends have not posted anything yet... Start writting a new Story!
-          </h2>
-        </div>
+        <FeedStatus
+          image={emptyFolderIcon}
+          title="Nothing to show"
+          subtitle="It looks like you and your friends have not posted anything yet... Start writting a new Story!"
+        />
       ) : (
         <>
           <header>
